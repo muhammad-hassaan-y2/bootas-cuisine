@@ -34,6 +34,8 @@ export default function Component() {
     router.push("/home"); // Navigate to the home page
   };
 
+
+  
   return (
 
 
@@ -44,7 +46,7 @@ export default function Component() {
         <div className="grid gap-8">
           <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
             <div className="grid gap-1">
-              <h1 className="text-3xl font-bold tracking-tight">Delicious Delights</h1>
+              <h1 className="text-3xl font-bold tracking-tight">Fast Food</h1>
               <p className="text-muted-foreground">Explore our mouthwatering selection of food items.</p>
             </div>
            
@@ -80,8 +82,10 @@ export default function Component() {
                         <h3 className="font-semibold">{item.name}</h3>
                         <p className="text-sm text-muted-foreground">{item.description}</p>
                       </div>
+                      
                       <Button size="icon" variant="ghost" className="ml-auto">
-                        <HeartIcon className="w-5 h-5 fill-muted stroke-muted-foreground group-hover:fill-primary group-hover:stroke-primary" />
+                        <HeartIcon className="w-5 h-5 fill-muted stroke-muted-foreground" /> 
+                        {/* for filling     heart group-hover:fill-primary group-hover:stroke-primary */}
                         <span className="sr-only">Favorite</span>
                       </Button>
                     </div>
