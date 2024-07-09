@@ -14,5 +14,9 @@ export async function GET(_request: Request) {
   return NextResponse.json({
     authenticated: !!session,
     session,
+ 
   });
 }
+
+
+
