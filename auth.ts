@@ -20,7 +20,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         email: {
           label: "Email",
           type: "email",
-          placeholder: "example@example.com",
+          placeholder: "mailto:example@example.com",
         },
         password: { label: "Password", type: "password" },
       },
