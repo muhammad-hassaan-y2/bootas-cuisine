@@ -8,6 +8,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { signIn } from 'next-auth/react';
 import { LoginUserInput, loginUserSchema } from '@/lib/user-schema';
+import Link from 'next/link';
 
 export const LoginForm = () => {
   const router = useRouter();
@@ -95,7 +96,7 @@ export const LoginForm = () => {
       <button
         type='submit'
         style={{ backgroundColor: `${submitting ? '#ccc' : '#3446eb'}` }}
-        className='inline-block px-7 py-4 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full'
+        className='inline-block px-7 py-4 bg-orange-500 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full'
         disabled={submitting}
       >
         {submitting ? 'loading...' : 'Sign In'}
@@ -105,12 +106,11 @@ export const LoginForm = () => {
         <p className='text-center font-semibold mx-4 mb-0'>OR</p>
       </div>
 
-      <a
+      <Link
         className='px-7 py-2 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3'
         style={{ backgroundColor: '#3b5998' }}
         onClick={() => signIn('google', { callbackUrl })}
-        role='button'
-      >
+        role='button' href={''}      >
         <Image
           className='pr-2'
           src='/images/google.svg'
@@ -120,22 +120,8 @@ export const LoginForm = () => {
           height={35}
         />
         Continue with Google
-      </a>
-      <a
-        className='px-7 py-2 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center'
-        style={{ backgroundColor: '#55acee' }}
-        onClick={() => signIn('github', { callbackUrl })}
-        role='button'
-      >
-        <Image
-          className='pr-2'
-          src='/images/github.svg'
-          alt=''
-          width={40}
-          height={40}
-        />
-        Continue with GitHub
-      </a>
+      </Link>
+     
     </form>
   );
 };
