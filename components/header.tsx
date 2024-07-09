@@ -14,7 +14,7 @@ const Header = async () => {
     <header className='bg-white h-20'>
       <nav className='h-full flex justify-between container items-center'>
         <div>
-          
+
           <Link href='/' className='text-ct-dark-600 text-2xl font-semibold'>
             Boota's Cuisine
           </Link>
