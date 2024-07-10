@@ -1,12 +1,23 @@
-import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { auth, signOut } from '@/auth';
+import Link from 'next/link';
 
-export default function Component() {
+const Navbar = async () => {
+
+
+  const session = await auth();
+  const user = session?.user;
+
+  const logoutAction = async () => {
+    'use server';
+    await signOut();
+  };
+
   return (
     <header className="flex h-16 w-full items-center justify-between bg-white px-4 md:px-6">
-      <Link href="#" className="flex items-center gap-2" prefetch={false}>
+      <Link href="/" className="flex items-center gap-2" prefetch={false}>
         <FlameIcon className="h-6 w-6 text-[#ff9f43]" />
-        <span className="text-lg font-bold text-[#ff9f43]">Boota Cuisine</span>
+        <span className="text-lg font-bold text-[#ff9f43]">Boota&apos;s Cuisine</span>
       </Link>
       <nav className="hidden gap-4 md:flex">
         <Link
@@ -14,8 +25,13 @@ export default function Component() {
           className="text-sm font-medium text-black hover:underline hover:underline-offset-4"
           prefetch={false}
         >
-          Menu
+          Home
         </Link>
+
+
+
+
+
         <Link
           href="/best-selling"
           className="text-sm font-medium text-black hover:underline hover:underline-offset-4"
@@ -24,16 +40,44 @@ export default function Component() {
           Special Offers
         </Link>
         <Link
-          href="#"
+          href="/cart"
           className="text-sm font-medium text-black hover:underline hover:underline-offset-4"
           prefetch={false}
         >
-          Contact
+          Cart
         </Link>
+
+
+   
+
+
       </nav>
+      <div className="flex gap-4 items-center">
       <Button variant="destructive" className="bg-[#ff9f43] text-white hover:bg-white hover:text-[#ff9f43]">
         Order Now
       </Button>
+
+
+      {user && (
+            <form action={logoutAction} className='flex'>
+            
+
+            <Button
+         variant={'ghost'}
+          className="text-sm font-medium text-black hover:underline hover:underline-offset-4"
+       
+        >
+          Logout
+        </Button>
+
+            
+            
+            </form>
+          )}
+      </div>
+      
+      
+
     </header>
   )
 }
@@ -56,3 +100,6 @@ function FlameIcon(props:any) {
     </svg>
   )
 }
+
+
+export default Navbar;

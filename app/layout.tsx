@@ -5,9 +5,11 @@ import './globals.css';
 import { SessionProvider } from 'next-auth/react';
 import { Toaster } from 'react-hot-toast';
 import { CartProvider } from '@/app/context/CartContext';
-import Navbar from '@/components/NavBar'; 
 import Footer from '@/components/Footer';
 import { cn } from '@/lib/utils';
+import Navbar from '@/components/NavBar';
+
+
 
 // const inter = Inter({ subsets: ['latin'] });
 const manrope = Manrope({ subsets: ['latin'], variable: '--font-manrope' });
