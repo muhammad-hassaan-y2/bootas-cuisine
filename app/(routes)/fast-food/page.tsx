@@ -9,8 +9,10 @@ import { useState } from "react";
 import { Dialog, DialogTrigger, DialogContent, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import { useCart } from "@/app/context/CartContext";
 
 type Product = {
+  id: string;
   name: string;
   description: string;
   price: number;
@@ -28,12 +30,19 @@ const products = [
 
 export default function Component() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const router = useRouter(); // Initialize the useRouter hook
+  const [quantity, setQuantity] = useState<number>(1);
+  const router = useRouter();
+  const { addToCart } = useCart();
 
   const handleGoBack = () => {
     router.push("/home"); // Navigate to the home page
   };
 
+  const handleAddToCart = (product: Product, quantity: number) => {
+    addToCart(product, quantity);
+    setSelectedProduct(null);
+    console.log('Added to cart:', product); // Debugging statement
+  };
 
   
   return (
@@ -156,7 +165,7 @@ export default function Component() {
               </div>
             </div>
             <DialogFooter className="flex flex-col space-y-2 md:items-center">
-              <Button>Add to Cart</Button>
+            <Button onClick={() => handleAddToCart(selectedProduct, quantity)}>Add to Cart</Button>
               <DialogClose asChild>
                 <Button variant="outline" onClick={() => setSelectedProduct(null)}>Close</Button>
               </DialogClose>
