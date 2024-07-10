@@ -92,9 +92,6 @@ export default function Component() {
           </div>
         </div>
 
-        <div className="flex justify-end">
-          <Button type="submit" className="w-full md:w-auto">Checkout</Button>
-        </div>
       </form>
     </section>
   );
