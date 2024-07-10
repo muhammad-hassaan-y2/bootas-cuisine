@@ -14,11 +14,15 @@ const Header = async () => {
     <header className='bg-white h-20'>
       <nav className='h-full flex justify-between container items-center'>
         <div>
-
           <Link href='/' className='text-ct-dark-600 text-2xl font-semibold'>
-            Boota's Cuisine
+            Boota&apos;s Cuisine
           </Link>
         </div>
+         
+        <Link href='/cart' className='text-ct-dark-600 text-2xl font-semibold'>
+            Cart
+        </Link>
+
         <ul className='flex items-center space-x-4'>
           <li>
             <Link href='/' className='text-ct-dark-600'>

@@ -19,21 +19,26 @@ type Product = {
 };
 
 const products = [
-  { name: "Qeema Karhi (Beef)", description: "Home baked bread is used", price: 390, image: "/qeema-karley.jpg" },
-  { name: "Biryani", description: "Classic chicken biryani, quick tasty meal", price: 330, image: "/biryani.jpg" },
-  { name: "Katori Chat", description: "Crispy chicken, fresh lettuce, zingy sauce", price: 190, image: "/katori-chat.jpg" },
-  { name: "Pulao", description: "Minced meat, lentils, served soft bun", price: 330, image: "/pulao.jpg" },
-  { name: "White Chicken Karahi", description: "Marinated grilled chicken, wrapped soft bread", price: 1600, unit: "kg", image: "/white-karahi.jpg" },
-  { name: "Vegetable Mix", description: "Juicy chicken, lettuce, tomato, toasted bun", price: 180, image: "/vegetable-mix.jpg" },
-  { name: "Daal Mash/ Chana", description: "Crispy chicken, fresh lettuce, zingy sauce", price: 180, image: "/daal.jpg" },
-  { name: "Chicken Haleem", description: "Minced meat, lentils, served soft bun", price: 270, image: "/haleem.jpg" },
-  { name: "BBQ Leg Piece", description: "Marinated grilled chicken, wrapped soft bread", price: 365, image: "/bbq-leg.jpg" },
-  { name: "BBQ Chest Piece", description: "Juicy chicken, lettuce, tomato, toasted bun", price: 320, image: "/bbq-chest.jpg" },
+  { id: '1', name: "Qeema Karhi (Beef)", description: "Home baked bread is used", price: 390, image: "/qeema-karley.jpg" },
+  { id: '2', name: "Biryani", description: "Classic chicken biryani, quick tasty meal", price: 330, image: "/biryani.jpg" },
+  { id: '3', name: "Katori Chat", description: "Crispy chicken, fresh lettuce, zingy sauce", price: 190, image: "/katori-chat.jpg" },
+  { id: '4', name: "Pulao", description: "Minced meat, lentils, served soft bun", price: 330, image: "/pulao.jpg" },
+  { id: '5', name: "White Chicken Karahi", description: "Marinated grilled chicken, wrapped soft bread", price: 1600, unit: "kg", image: "/white-karahi.jpg" },
+  { id: '6', name: "Vegetable Mix", description: "Juicy chicken, lettuce, tomato, toasted bun", price: 180, image: "/vegetable-mix.jpg" },
+  { id: '7', name: "Daal Mash/ Chana", description: "Crispy chicken, fresh lettuce, zingy sauce", price: 180, image: "/daal.jpg" },
+  { id: '8', name: "Chicken Haleem", description: "Minced meat, lentils, served soft bun", price: 270, image: "/haleem.jpg" },
+  { id: '9', name: "BBQ Leg Piece", description: "Marinated grilled chicken, wrapped soft bread", price: 365, image: "/bbq-leg.jpg" },
+  { id: '10', name: "BBQ Chest Piece", description: "Juicy chicken, lettuce, tomato, toasted bun", price: 320, image: "/bbq-chest.jpg" },
 ];
 
 export default function Component() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const router = useRouter(); // Initialize the useRouter hook
+  
+  const [cartData, setCartData] = useState()
+
+  
+
 
   const handleGoBack = () => {
     router.push("/home"); // Navigate to the home page

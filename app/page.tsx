@@ -22,10 +22,12 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
 import Image from "next/image"
+import Header from "@/components/header"
 
 export default function Component() {
   return (
     <div className="bg-muted/40 w-full min-h-screen py-12">
+      <Header />
       <div className="container px-4 md:px-6 max-w-4xl mx-auto">
         <div className="grid gap-6 md:gap-8">
           <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">

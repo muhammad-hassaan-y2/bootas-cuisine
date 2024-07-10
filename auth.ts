@@ -37,15 +37,18 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           name: "Temporary User",
         };
 
-        if (credentials.email === tempUser.email &&
-          await bcrypt.compare(credentials.password, tempUser.password)) {
-        return {
-          id: tempUser.id,
-          email: tempUser.email,
-          name: tempUser.name,
-          randomKey: "Hey cool",
-        };
-      }
+        if (
+          credentials.email === tempUser.email &&
+          await bcrypt.compare(String(credentials.password), tempUser.password)
+        ) {
+          // @ts-ignore
+          return {
+            id: tempUser.id,
+            email: tempUser.email,
+            name: tempUser.name,
+            randomKey: "Hey cool",
+          };
+        }
 
         const user = await db.query.users.findFirst({
           where: (users, { eq }) => eq(users.email, String(credentials.email)),
@@ -76,9 +79,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         "/fast-food",
         "/home",
         "/sides",
-        "/"
+        "/",
       ];
-      const isProtected = protectedPaths.some((path) => nextUrl.pathname.startsWith(path));
+      const isProtected = protectedPaths.some((path) =>
+        nextUrl.pathname.startsWith(path)
+      );
 
       if (isProtected && !isLoggedIn) {
         const redirectUrl = new URL("/login", nextUrl.origin);

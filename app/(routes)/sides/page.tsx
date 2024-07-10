@@ -19,10 +19,10 @@ type Product = {
 };
 
 const products = [
-  { name: "Diet Salad", description: "Fresh veggies with light dressing", price: 390, image: "/diet-salad.jpg" },
-  { name: "Sada Roti/1", description: "Plain flatbread, perfect meal accompaniment", price: 20, image: "/sada-roti.jpg" },
-  { name: "Mint Margarita", description: "Refreshing mint drink, perfect for summer", price: 100, image: "/mint-margaritta.jpg" },
-  { name: "Tea", description: "Warm, comforting, classic brewed tea", price: 80, image: "/tea.jpg" },
+  { id: '17', name: "Diet Salad", description: "Fresh veggies with light dressing", price: 390, image: "/diet-salad.jpg" },
+  { id: '18', name: "Sada Roti/1", description: "Plain flatbread, perfect meal accompaniment", price: 20, image: "/sada-roti.jpg" },
+  { id: '19', name: "Mint Margarita", description: "Refreshing mint drink, perfect for summer", price: 100, image: "/mint-margaritta.jpg" },
+  { id: '20', name: "Tea", description: "Warm, comforting, classic brewed tea", price: 80, image: "/tea.jpg" },
 ];
 
 export default function Component() {

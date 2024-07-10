@@ -18,12 +18,12 @@ type Product = {
 };
 
 const products = [
-  { name: "Tortilla Wrap", description: "Home baked bread is used", price: 350, image: "/tortilla-wrap.jpg" },
-  { name: "Chicken Bun", description: "Classic chicken bun, quick tasty meal", price: 160, image: "/chicken-bun.jpg" },
-  { name: "Zinger burger", description: "Crispy chicken, fresh lettuce, zingy sauce", price: 250, image: "/zinger-burger.jpg" },
-  { name: "Shami Burger", description: "Minced meat, lentils, served soft bun", price: 140, image: "/shami-burger.jpg" },
-  { name: "Chicken Shawarma", description: "Marinated grilled chicken, wrapped soft bread", price: 190, image: "/chicken-shawarma.jpg" },
-  { name: "Chicken Sandwich", description: "Juicy chicken, lettuce, tomato, toasted bun", price: 450, image: "/chicken-sandwich.jpg" },
+  { id: '11', name: "Tortilla Wrap", description: "Home baked bread is used", price: 350, image: "/tortilla-wrap.jpg" },
+  { id: '12', name: "Chicken Bun", description: "Classic chicken bun, quick tasty meal", price: 160, image: "/chicken-bun.jpg" },
+  { id: '13', name: "Zinger burger", description: "Crispy chicken, fresh lettuce, zingy sauce", price: 250, image: "/zinger-burger.jpg" },
+  { id: '14', name: "Shami Burger", description: "Minced meat, lentils, served soft bun", price: 140, image: "/shami-burger.jpg" },
+  { id: '15', name: "Chicken Shawarma", description: "Marinated grilled chicken, wrapped soft bread", price: 190, image: "/chicken-shawarma.jpg" },
+  { id: '16', name: "Chicken Sandwich", description: "Juicy chicken, lettuce, tomato, toasted bun", price: 450, image: "/chicken-sandwich.jpg" },
 ];
 
 export default function Component() {
