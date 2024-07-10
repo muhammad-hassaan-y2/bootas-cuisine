@@ -1,10 +1,16 @@
-'use client';
+"use client";
 
 import { useCart } from "@/app/context/CartContext";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog"
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogFooter,
+  DialogClose,
+} from "@/components/ui/dialog";
 import Checkout from "@/components/Checkout";
 
 export default function CartPage() {
@@ -24,42 +30,45 @@ export default function CartPage() {
         <div className="grid gap-4">
           {cart.map((item) => (
             <div key={item.product.id} className="flex items-center gap-4">
-              <Image src={item.product.image} alt={item.product.name} width={100} height={100} className="rounded-lg object-cover" />
+              <Image
+                src={item.product.image}
+                alt={item.product.name}
+                width={100}
+                height={100}
+                className="rounded-lg object-cover"
+              />
               <div className="flex-1">
                 <h3 className="text-xl font-bold">{item.product.name}</h3>
                 <p className="text-sm">{item.product.description}</p>
-                <p className="font-semibold">Rs. {item.product.price} x {item.quantity}</p>
+                <p className="font-semibold">
+                  Rs. {item.product.price} x {item.quantity}
+                </p>
               </div>
-              <Button variant="outline" onClick={() => removeFromCart(item.product.id)}>Remove</Button>
+              <Button
+                variant="outline"
+                onClick={() => removeFromCart(item.product.id)}
+              >
+                Remove
+              </Button>
             </div>
           ))}
           <div className="flex justify-end gap-4 mt-4">
-            <Button variant="outline" onClick={clearCart}>Clear Cart</Button>
-
-
-
-       
-
-
-
+            <Button variant="outline" onClick={clearCart}>
+              Clear Cart
+            </Button>
 
             <Dialog defaultOpen>
-      <DialogTrigger asChild>
-        <Button>Checkout</Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[600px]">
-      <Checkout/>
-        <DialogFooter className="mt-6 flex justify-end gap-2">
-          <Button variant="outline">Cancel</Button>
-          <Button>Place Order</Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-
-
-
-
-       
+              <DialogTrigger asChild>
+                <Button>Checkout</Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[600px]">
+                <Checkout />
+                <DialogFooter className="mt-6 flex justify-end gap-2">
+                  <Button variant="outline">Cancel</Button>
+                  <Button>Place Order</Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       )}

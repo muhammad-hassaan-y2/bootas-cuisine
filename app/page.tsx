@@ -23,12 +23,13 @@ import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
 import Image from "next/image"
 import Header from "@/components/header"
+import Categories from "@/components/Categories"
 
 export default function Component() {
   return (
     <div className="bg-muted/40 w-full min-h-screen py-12">
       {/* <Header /> */}
-      <div className="container px-4 md:px-6 max-w-4xl mx-auto">
+      {/* <div className="container px-4 md:px-6 max-w-4xl mx-auto">
         <div className="grid gap-6 md:gap-8">
           <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
             <div className="grid gap-1">
@@ -131,7 +132,14 @@ export default function Component() {
             </Card>
           </div>
         </div>
-      </div>
+      </div> */}
+      <div className="text-center">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">Our Categories</h2>
+          <p className="max-w-[700px] mx-auto mt-4 text-muted-foreground md:text-lg">
+            Explore our diverse range of culinary offerings, each with its own unique flavors and traditions.
+          </p>
+        </div>
+      <Categories/>
     </div>
   )
 }
