@@ -1,4 +1,4 @@
-import PizzaCard from './Card';
+import Card from './Card';
 
 
 
@@ -9,13 +9,13 @@ const products = [
     {  name: "Tea", description: "Warm, comforting, classic brewed tea", price: "80", image: "/tea.jpg" },
   ];
 
-const PizzaList = () => {
+const Sides = () => {
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-2xl font-bold mb-6">Sides</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.map((pizza) => (
-          <PizzaCard
+          <Card
             key={pizza.name}
             name={pizza.name}
             description={pizza.description}
@@ -28,4 +28,4 @@ const PizzaList = () => {
   );
 };
 
-export default PizzaList;
+export default Sides;

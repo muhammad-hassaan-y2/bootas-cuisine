@@ -8,7 +8,7 @@ export default function Categories() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
 
           <div className="relative group rounded-lg overflow-hidden transition-all duration-300 ease-in-out hover:scale-105">
-            <Link href="/categories/italian" className="absolute inset-0 z-10" prefetch={false}>
+            <Link href="/fast-food" className="absolute inset-0 z-10" prefetch={false}>
               <span className="sr-only">View Fast Food</span>
             </Link>
             <img
@@ -46,7 +46,7 @@ export default function Categories() {
           </div>
 
           <div className="relative group rounded-lg overflow-hidden transition-all duration-300 ease-in-out hover:scale-105">
-            <Link href="/categories/japanese" className="absolute inset-0 z-10" prefetch={false}>
+            <Link href="/desi-taste" className="absolute inset-0 z-10" prefetch={false}>
               <span className="sr-only">View Desi Taste</span>
             </Link>
             <img

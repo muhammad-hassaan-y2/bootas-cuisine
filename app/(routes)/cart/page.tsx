@@ -53,26 +53,17 @@ export default function CartPage() {
               Clear Cart
             </Button>
 
-<<<<<<< HEAD
-            <Dialog defaultOpen>
-=======
             <Dialog>
->>>>>>> a26c023586b1d9eb8c98d284133a82f134d13707
               <DialogTrigger asChild>
                 <Button>Checkout</Button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[600px]">
                 <Checkout />
                 <DialogFooter className="mt-6 flex justify-end gap-2">
-<<<<<<< HEAD
-                  <Button variant="outline">Cancel</Button>
-                  <Button>Place Order</Button>
-=======
                   <DialogClose asChild>
                     <Button variant="outline">Cancel</Button>
                   </DialogClose>
                   <Button form="checkout-form" type="submit">Place Order</Button>
->>>>>>> a26c023586b1d9eb8c98d284133a82f134d13707
                 </DialogFooter>
               </DialogContent>
             </Dialog>
