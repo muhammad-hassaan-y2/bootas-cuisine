@@ -4,14 +4,16 @@ import { useCart } from "@/app/context/CartContext";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog"
+import Checkout from "@/components/Checkout";
 
 export default function CartPage() {
   const { cart, removeFromCart, clearCart } = useCart();
   const router = useRouter();
 
-  const handleCheckout = () => {
-    // Handle checkout logic here
-  };
+  // const handleCheckout = () => {
+  //   // Handle checkout logic here
+  // };
 
   return (
     <div className="container mx-auto p-4">
@@ -33,7 +35,31 @@ export default function CartPage() {
           ))}
           <div className="flex justify-end gap-4 mt-4">
             <Button variant="outline" onClick={clearCart}>Clear Cart</Button>
-            <Button onClick={handleCheckout}>Checkout</Button>
+
+
+
+       
+
+
+
+
+            <Dialog defaultOpen>
+      <DialogTrigger asChild>
+        <Button>Checkout</Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[600px]">
+      <Checkout/>
+        <DialogFooter className="mt-6 flex justify-end gap-2">
+          <Button variant="outline">Cancel</Button>
+          <Button>Place Order</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+
+
+
+
+       
           </div>
         </div>
       )}
