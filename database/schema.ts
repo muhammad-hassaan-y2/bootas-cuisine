@@ -3,6 +3,8 @@ import {
   pgTable,
   text,
   primaryKey,
+  json,
+
   integer,
   uuid,
 } from 'drizzle-orm/pg-core';
@@ -40,6 +42,18 @@ export const accounts = pgTable(
     }),
   })
 );
+
+export const orders = pgTable('orders', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  name: text('name').notNull(),
+  phoneNumber: text('phoneNumber').notNull(),
+  email: text('email').notNull(),
+  shippingAddress: text('shippingAddress').notNull(),
+  cart: json('cart').notNull(),
+  subtotal: integer('subtotal').notNull(),
+  total: integer('total').notNull(),
+  createdAt: timestamp('createdAt').defaultNow(),
+});
 
 export const sessions = pgTable('session', {
   sessionToken: text('sessionToken').notNull().primaryKey(),

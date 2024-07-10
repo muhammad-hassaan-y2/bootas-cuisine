@@ -1,21 +1,23 @@
-'use client'
-import { useState, useContext, useEffect, FormEvent } from 'react';
-import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogClose, DialogFooter } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Separator } from "@/components/ui/separator";
-import { XIcon } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { useCart } from '@/app/context/CartContext';
-import Image from 'next/image';
+'use client';
 
-export default function Component() {
-  const { cart } = useCart();
+import { useState, useEffect, FormEvent } from 'react';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Separator } from '@/components/ui/separator';
+import { Input } from '@/components/ui/input';
+import { useCart } from '@/app/context/CartContext';
+import { useRouter } from 'next/navigation';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+export default function Checkout() {
+  const { cart, clearCart } = useCart();
   const [subtotal, setSubtotal] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
-    // Calculate subtotal
     const subtotal = cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
     setSubtotal(subtotal);
   }, [cart]);
@@ -23,13 +25,20 @@ export default function Component() {
   const shippingFee = 200;
   const total = subtotal + shippingFee;
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     const name = (document.getElementById('name') as HTMLInputElement).value;
     const phoneNumber = (document.getElementById('phone-number') as HTMLInputElement).value;
     const email = (document.getElementById('email') as HTMLInputElement).value;
     const shippingAddress = (document.getElementById('shipping-address') as HTMLTextAreaElement).value;
+
+    if (!name || !phoneNumber || !email || !shippingAddress) {
+      toast.error('Please fill in all the fields.');
+      setIsSubmitting(false);
+      return;
+    }
 
     const orderData = {
       name,
@@ -41,7 +50,30 @@ export default function Component() {
       total,
     };
 
-    console.log(orderData);
+    try {
+      const response = await fetch('/api/order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderData),
+      });
+
+      if (response.ok) {
+        clearCart();
+        toast.success('Your order has been placed successfully!');
+        setTimeout(() => {
+          router.push('/order-success');
+        }, 2000);
+      } else {
+        throw new Error('Failed to submit order');
+      }
+    } catch (error) {
+      console.error('Error submitting order:', error);
+      toast.error('An error occurred while placing your order. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -52,24 +84,25 @@ export default function Component() {
 
       <Separator className="my-4" />
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form id="checkout-form" onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-4">
           <Label htmlFor="name">Name</Label>
-          <Input id="name" placeholder="Enter your name" 
-          className="w-full" />
+          <Input id="name" placeholder="Enter your name" className="w-full" required />
         </div>
 
         <div className="space-y-4">
           <Label htmlFor="phone-number">Phone Number</Label>
-          <Input id="phone-number" placeholder="Enter your phone number" 
-          className="w-full" />
+          <Input id="phone-number" placeholder="Enter your phone number" className="w-full" required />
         </div>
 
-        
+        <div className="space-y-4">
+          <Label htmlFor="email">Email</Label>
+          <Input id="email" placeholder="Enter your email" className="w-full" required />
+        </div>
+
         <div className="space-y-4">
           <Label htmlFor="shipping-address">Shipping Address</Label>
-          <Textarea id="shipping-address" placeholder="Enter your shipping address" 
-          className="min-h-[100px] w-full" />
+          <Textarea id="shipping-address" placeholder="Enter your shipping address" className="min-h-[100px] w-full" required />
         </div>
 
         <Separator className="my-4" />
@@ -80,7 +113,6 @@ export default function Component() {
             <p className="font-medium">Rs. {subtotal.toFixed(2)}</p>
           </div>
 
-          
           <div className="flex items-center justify-between">
             <p className="text-muted-foreground">Shipping</p>
             <p className="font-medium">Rs. {shippingFee.toFixed(2)}</p>
@@ -92,7 +124,12 @@ export default function Component() {
           </div>
         </div>
 
+        <Button type="submit" variant="outline" disabled={isSubmitting}>
+          {isSubmitting ? 'Placing Order...' : 'Place Order'}
+        </Button>
       </form>
+
+      <ToastContainer />
     </section>
   );
 }
