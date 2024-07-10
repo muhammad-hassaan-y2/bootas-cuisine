@@ -5,7 +5,7 @@ import { Suspense } from 'react';
 export default async function LoginPage() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
 
       <section className='flex min-h-[100dvh] items-center justify-center bg-[#ff9f43] px-4 py-12 sm:px-6 lg:px-8'>
         <div className='container mx-auto px-6 py-12 h-full flex justify-center items-center'>

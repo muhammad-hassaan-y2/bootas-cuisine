@@ -1,11 +1,17 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+// import { Inter } from 'next/font/google';
+import { Manrope } from 'next/font/google';
 import './globals.css';
 import { SessionProvider } from 'next-auth/react';
 import { Toaster } from 'react-hot-toast';
 import { CartProvider } from '@/app/context/CartContext';
+import Navbar from '@/components/NavBar'; 
+import Footer from '@/components/Footer';
+import { cn } from '@/lib/utils';
 
-const inter = Inter({ subsets: ['latin'] });
+// const inter = Inter({ subsets: ['latin'] });
+const manrope = Manrope({ subsets: ['latin'], variable: '--font-manrope' });
+
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -19,10 +25,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={cn(
+                    'min-h-screen bg-background font-manrope antialiased',
+                    manrope.variable
+                )}>
         <SessionProvider>
           <CartProvider>
+            <Navbar/>
             {children}
+            <Footer/>
           </CartProvider>
         </SessionProvider>
         <Toaster />
